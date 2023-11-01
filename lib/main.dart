@@ -8,9 +8,9 @@ import 'dart:io';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ByteData data = await PlatformAssetBundle().load('assets/cert.pem');
-  SecurityContext.defaultContext
-      .setTrustedCertificatesBytes(data.buffer.asUint8List());
+  // ByteData data = await PlatformAssetBundle().load('assets/localhost.crt');
+  // SecurityContext.defaultContext
+  //     .setTrustedCertificatesBytes(data.buffer.asUint8List());
 
   runApp(MyApp());
 }
@@ -35,12 +35,12 @@ class MyHomePage extends StatelessWidget {
     final url = Uri.parse(serverUrl);
     //final ByteData crtData = await rootBundle.load('assets/cert3.pem');
     //securityContext.setTrustedCertificatesBytes(crtData.buffer.asUint8List());
-    securityContext.setTrustedCertificates('assets/cert.pem');
+    securityContext.setTrustedCertificates('assets/localhost.crt');
     String ml = 'nikita.leventev97@gmail.com';
     final response = await HttpClient(context: securityContext).postUrl(url);
     response.headers.set(
         'idToken',
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6ImEwNmFmMGI2OGEyMTE5ZDY5MmNhYzRhYmY0MTVmZjM3ODgxMzZmNjUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0MTIzNTA4NjMwMjctZGZpdGhnOGgwNjY4djFoNTJoOWhzcWY5NjAyazFyNDAuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0MTIzNTA4NjMwMjctaWswODJpdDUyMTFhN2I1Y3VubGlwcjYzYm50aWxiZzguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDkzMzg0ODY2OTkxNTQ1NzY2NDUiLCJlbWFpbCI6Im5pa2l0YS5sZXZlbnRldjk3QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiRXppbyBOaWsiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jTEZ3VkxZS2l3NnFiRjNTaFdNMXFrSUowSVRoLTUxbS00QmdGbHJzRVZOPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkV6aW8iLCJmYW1pbHlfbmFtZSI6Ik5payIsImxvY2FsZSI6InJ1IiwiaWF0IjoxNjk4MDY5NDU2LCJleHAiOjE2OTgwNzMwNTZ9.eie_wFgBFYMpLHe9klHB3mDeP-eV1DEA3H3IvLtKouFNUSvycEoTT0Y2rDAvoAN0pMC4yfNKxHVNRqebhz5g06gScbhXCLxLHDZ-BT8mAKaqBOJWY9NCHXTgffnsFXnMK0nbHuwi8q03ARZaRszx6qo1pnxzSAYAqJEVnJMj2DPOTb1sYcb2aGQ7VAgVc9p03jv1oIgQDnkNI2Jqe16e45KERZ_9ypgIN7Ijm5sy7-aXn0mF4mqPu_oV38Xkg8Oa4YsiQMrIT_qidMrPFZeI41ldEk_Xf-504K-QfslmHDzkDg1vILVChlbl6SOLEI9MBBcJjPOUMNiG0XxUNtKtAw'
+        'eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1ZjRiZjQ2ZTUyYjMxZDliNjI0OWY3MzA5YWQwMzM4NDAwNjgwY2QiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0MTIzNTA4NjMwMjctZGZpdGhnOGgwNjY4djFoNTJoOWhzcWY5NjAyazFyNDAuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0MTIzNTA4NjMwMjctaWswODJpdDUyMTFhN2I1Y3VubGlwcjYzYm50aWxiZzguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDkzMzg0ODY2OTkxNTQ1NzY2NDUiLCJlbWFpbCI6Im5pa2l0YS5sZXZlbnRldjk3QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiRXppbyBOaWsiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jTEZ3VkxZS2l3NnFiRjNTaFdNMXFrSUowSVRoLTUxbS00QmdGbHJzRVZOPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkV6aW8iLCJmYW1pbHlfbmFtZSI6Ik5payIsImxvY2FsZSI6InJ1IiwiaWF0IjoxNjk4ODYwOTkwLCJleHAiOjE2OTg4NjQ1OTB9.XSrCFx0cf4sUNMvkrUOkqFv3gM0et8R94_rJpBK6PUTV9w7Kik9Q7tiz-rTWiYXRharzLPTR1yzWTDir2kpCNeW-qbtUEV7ayHWfpobWxMPcXwrrvNE02bMiVu030QSc7gMmAz_dI7VuGNFeGSoElbKUmtCLtTzDMAPBEUKgJjyelbzDLG8LCZSZcDbt_XF5YXr0ukmhGJUwaZAmH8G3hUqWgJQo4sIMW8EyMRO9paYltMQieOQF_Wjr0aIR_puf4as3Tp7SROR5A_TaJmNFWH396sc7gTVNK1kcGTeSA28biMPDFP5LSLpo5zmCMHTQDB1kFdol9nkAeFimZ3AqCw'
             as String);
     response.headers.set('email', ml);
 
